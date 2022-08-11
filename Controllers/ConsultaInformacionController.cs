@@ -75,5 +75,12 @@ namespace Pedidos.Controllers {
 
             return Json(lista);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ConsultaDetallesDelPedido(PedidoEdoDTO modelo) {
+            var lista = await _IConsultaPedidoService.ConsultaDetallesDelPedido(modelo);
+
+            return PartialView(lista);
+        }
     }
 }

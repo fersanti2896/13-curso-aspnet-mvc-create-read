@@ -33,6 +33,13 @@ function EdicionPedido(html) {
 			envioGenericos("/ConsultaInformacion/ConsultaProductos", modelo, RenderizaProductos);
 			envioGenericos("/ConsultaInformacion/ConsultaEstadosRepublica", modelo, RenderizaEstadosRepublica);
 
+			$("#SelectProducto").on('change', function () {
+				var imagen = $("#SelectProducto option:selected").text();
+				$("#ImagenProducto").attr("src", "/images/" + imagen + ".jpg");
+			});
+
+			ConsultaDetallesDelPedido();
+
 			Swal.keepOpened = true;
 		},
 		preConfirm: function (resultado) {
@@ -77,4 +84,10 @@ function RenderizaResultado(dataJSON) {
 	}
 
 	return select;
+}
+
+function ConsultaDetallesDelPedido() {
+	var modelo = { PedidoId: $("#PedidoId").val() }
+
+	envioGenericos("/ConsultaInformacion/ConsultaDetallesDelPedido", modelo, "TablaDetallePedido")
 }
