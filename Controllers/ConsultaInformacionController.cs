@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Transporte;
 
@@ -59,6 +60,20 @@ namespace Pedidos.Controllers {
             _IConsultaPedidoService.ConsultaDetallePedido(modelo);
 
             return PartialView(modelo);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultaProductos() {
+            var lista = _IConsultaPedidoService.ConsultaProductos().ToList();
+
+            return Json(lista);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultaEstadosRepublica() {
+            var lista = _IConsultaPedidoService.ConsultaEstadosRepublica().ToList();
+
+            return Json(lista);
         }
     }
 }

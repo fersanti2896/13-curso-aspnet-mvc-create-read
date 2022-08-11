@@ -1,62 +1,37 @@
 ﻿@model Transporte.PedidoEdoDTO
 
-<h4>PedidoEdoDTO</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="ConsultaDetallePedido">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EstadoPedido" class="control-label"></label>
-                <input asp-for="EstadoPedido" class="form-control" />
-                <span asp-validation-for="EstadoPedido" class="text-danger"></span>
+<div class="panel">
+    <div class="form-group row">
+        <div class="col-sm-9">
+            <div class="row">
+                <label class="col-sm-6 col-form-label">Estado de la República:</label>
+                <div class="col-sm-6">
+                    <select class="form-control" id="SelectEstadosRepublica"></select>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Cantidad" class="control-label"></label>
-                <input asp-for="Cantidad" class="form-control" />
-                <span asp-validation-for="Cantidad" class="text-danger"></span>
+
+            <div class="row">
+                <label class="col-sm-6 col-form-label">Producto:</label>
+                <div class="col-sm-6">
+                    <select class="form-control" id="SelectProducto"></select>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EstadoRepublica" class="control-label"></label>
-                <input asp-for="EstadoRepublica" class="form-control" />
-                <span asp-validation-for="EstadoRepublica" class="text-danger"></span>
+
+            <div class="row">
+                <label class="col-sm-6 col-form-label">Cantidad:</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" value="0" id="PedidoCantidad" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Region" class="control-label"></label>
-                <input asp-for="Region" class="form-control" />
-                <span asp-validation-for="Region" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatEstadoPedidoId" class="control-label"></label>
-                <input asp-for="CatEstadoPedidoId" class="form-control" />
-                <span asp-validation-for="CatEstadoPedidoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sigla" class="control-label"></label>
-                <input asp-for="Sigla" class="form-control" />
-                <span asp-validation-for="Sigla" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatEstadoRepublicaId" class="control-label"></label>
-                <input asp-for="CatEstadoRepublicaId" class="form-control" />
-                <span asp-validation-for="CatEstadoRepublicaId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PedidoId" class="control-label"></label>
-                <input asp-for="PedidoId" class="form-control" />
-                <span asp-validation-for="PedidoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
+        <div class="col-sm-3">
+            <img src="~/images/SIN SELECCION.jpg" id="ImagenProducto" style="width:100px;height:100px;" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12" id="TablaDetallePedido" style="padding-top:15px"></div>
+        @Html.HiddenFor(Model => Model.CatEstadoRepublicaId, new { id = "CatEstadoRepublicaId" })
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

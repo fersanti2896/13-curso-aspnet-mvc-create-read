@@ -1,5 +1,7 @@
 ﻿@model Transporte.PaginadorDTO<Transporte.PedidoDTO>
 
+<script type="text/javascript" src="~/js/BandejaPrincipal/ConsultaPedidosGeneral.js"></script>
+
 <h1>Bandeja de Seguimiento</h1>
 <br>
 
@@ -26,7 +28,7 @@
 							    onmouseover="tooltip.show('Agregar Pedido')"
 								onmouseout="tooltip.hide()"
 								id="agregarPedido"
-								onclick="agregarPedido(0);tooltip.hide();">
+								onclick="AgregarPedido(0);tooltip.hide();">
 								<i class="fas fa-plus"></i>
 						</button>
 					</th>
@@ -94,29 +96,6 @@
 </div>
 
 <script type="text/javascript">
-	function AgregarPedido(PedidoId) {
-		ConsultaDetallePedido(PedidoId);
-	
-	}
-
-	/* Para manejo de vista parcial */
-	function ConsultaDetallePedido(PedidoId) {
-		$("#PedidoId").(PedidoId); 
-
-		var modelo = { PedidoId:PedidoId };
-		envioGenericos("/ConsultaInformacion/ConsultaDetallePedido", modelo, ConsultaGrid);
-	}
-
-	function ActualizarEstadoPedido(PedidoId, EstadoSiguienteId){
-		var modelo = { PedidoId:PedidoId, CatEstadoPedidoId:EstadoSiguienteId }
-		envioGenericos("/ConsultaInformacion/ActualizarEstadoPedido", modelo, ConsultaGrid);
-	}
-
-	function EliminarPedido(PedidoId){
-		var modelo = { PedidoId:PedidoId }
-		envioGenericos("/ConsultaInformacion/EliminarPedido", modelo, ConsultaGrid);
-	}
-
 	function ConsultaPaginaSiguiente() {
 		ConsultaGrid(@Model.Pagina.Siguiente);
 	}
