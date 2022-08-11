@@ -53,5 +53,12 @@ namespace Pedidos.Controllers {
 
             return resultado ? Ok() : StatusCode(500, "Ocurrió un error");
         }
+
+        [HttpPost]
+        public IActionResult ConsultaDetallePedido(PedidoEdoDTO modelo) {
+            _IConsultaPedidoService.ConsultaDetallePedido(modelo);
+
+            return PartialView(modelo);
+        }
     }
 }

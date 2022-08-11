@@ -54,7 +54,7 @@
 									    type="button"
 										onmouseover="tooltip.show('Editar pedido')" 
 										onmouseout="tooltip.hide()"
-										onclick="agregarPedido(@item.PedidoId);tooltip.hide();">
+										onclick="AgregarPedido(@item.PedidoId);tooltip.hide();">
 									<i class="fas fa-plus"></i>
 								</button>
 								<button class="btn alert-success my-2 my-sm-0" 
@@ -90,10 +90,23 @@
 		Model.Pagina.AccionSiguiente = "tooltip.hide();ConsultaPaginaSiguiente();";
 		Model.Pagina.AccionConsulta  = "tooltip.hide();ConsultaGrid();";
 	}
-	@Html.Partial("~/Views/Shared/FooterTabla.cshtml", Model.Pagina);
+	@await Html.PartialAsync("~/Views/Shared/FooterTabla.cshtml", Model.Pagina);
 </div>
 
 <script type="text/javascript">
+	function AgregarPedido(PedidoId) {
+		ConsultaDetallePedido(PedidoId);
+	
+	}
+
+	/* Para manejo de vista parcial */
+	function ConsultaDetallePedido(PedidoId) {
+		$("#PedidoId").(PedidoId); 
+
+		var modelo = { PedidoId:PedidoId };
+		envioGenericos("/ConsultaInformacion/ConsultaDetallePedido", modelo, ConsultaGrid);
+	}
+
 	function ActualizarEstadoPedido(PedidoId, EstadoSiguienteId){
 		var modelo = { PedidoId:PedidoId, CatEstadoPedidoId:EstadoSiguienteId }
 		envioGenericos("/ConsultaInformacion/ActualizarEstadoPedido", modelo, ConsultaGrid);
